@@ -1,0 +1,33 @@
+---
+title: "Course project"
+author: "Anatoli Kraev"
+date: "11/7/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Developing Data Products: Course project R Markdown and Leaflet
+This project is a task performed in the second week of the course Developing Data Products. The goal of the project is to create a web page using R Markdown and the Leaflet package.
+
+### Installing the needed packages
+```{r}
+library(leaflet)
+library(htmltools)
+```
+### Map with several landmarks of Moscow
+```{r}
+df <- read.csv(textConnection(
+"Long,Lat,Sites 
+37.6834059,55.7659274,<a href='http://www.bmstu.ru/en/' target='blank'>My Alma Mater</a>
+37.6153107,55.7520263,<a href='https://www.kreml.ru/en-Us/museums-moscow-kremlin/' target='blank'>Kremlin</a>
+37.5264809,55.7039379,<a href='https://www.msu.ru/en/' target='blank'>Moscow State University</a>
+37.6164599,55.7601365,<a href='https://www.bolshoi.ru/en/' target='blank'>Bolshoi Theater</a>
+37.6186752,55.7441392,<a href='https://www.tretyakovgallery.ru/en/' target='blank'>Tretyakov gallery</a>
+"))
+leaflet(df) %>% addTiles() %>%
+  addMarkers(~Long, ~Lat, popup = ~Sites)
+```
+
