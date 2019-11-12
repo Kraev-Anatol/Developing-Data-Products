@@ -1,0 +1,43 @@
+---
+title: "Developing Data Products Week 3 Asignment"
+author: "Anatoli Kraev"
+date: "11/12/2019"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Introduction
+
+This project is a task performed in the third week of the course Developing Data Products. The purpose of the project is to create a web page presntation using R Markdown and the Plotly packages.
+The diamonds dataset from the ggplot2 package was selected as the test subject.
+
+```{r}
+library(plotly)
+library(ggplot2)
+data("diamonds")
+```
+
+## Histogram
+
+```{r}
+plot_ly(diamonds, x= ~price, type = "histogram") %>%
+  layout(title = 'Diamonds price histogram')
+```
+
+## Box Plot
+
+```{r}
+plot_ly(diamonds, y= ~price, color = ~cut, type = 'box') %>%
+  layout(title = 'Diamonds Price according Cut')
+```
+
+## Pie Chart
+
+```{r}
+plot_ly(diamonds, labels= ~cut, values= ~carat, type = 'pie') %>%
+  layout(title = 'Diamonds Weight(carat) according Cut')
+```
+
