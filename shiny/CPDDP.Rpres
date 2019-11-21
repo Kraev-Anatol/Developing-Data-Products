@@ -1,0 +1,35 @@
+Course Project Developing Data Products week 4
+========================================================
+author: Anatoli Kraev
+date: 21.10.2019
+autosize: true
+width: 1600
+height: 900
+
+Introduction
+========================================================
+
+The search for variables responsible for the behavior of the model is a serious problem. One way to select variables is to use the Akaike information criterion: https://en.wikipedia.org/wiki/Akaike_information_criterion
+Using the "mtcars" database, we will construct a model of the dependence of mpg (Miles / (US) gallon) on variables that have the greatest influence according to the AIC criterion.
+
+Model building
+========================================================
+
+```{r}
+AICmodel <- step(lm(mpg ~ ., data = mtcars), direction = "both", trace = 0) 
+summary(AICmodel)
+```
+The algorithm chose the model with the smallest AIС. You can view the process by selecting: trace = 1 All independent variables are statistically significant. R-squared acceptably reflects variance.
+
+Model analysis
+========================================================
+
+```{r, echo=TRUE}
+plot(AICmodel, col = "blue")
+```
+
+Conclusion
+========================================================
+
+1. The Akaike information criterion is fairly reliable way to select a model.
+2. Residual analysis graphs are very useful tool for assessing the validity of linear regression model.
